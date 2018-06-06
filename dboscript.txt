@@ -1,0 +1,92 @@
+CREATE TABLE ADRESA (
+	adrese_id INT NOT NULL identity(1,1),
+	rruga varchar(100) NOT NULL ,
+	pershkrimi varchar(150) NULL,
+	PRIMARY KEY (adrese_id)
+);
+
+CREATE TABLE POROSI (
+	porosi_id INT NOT NULL identity(1,1),
+	adresa_id INT NOT null,
+	datetime_Porosi DATETIME NOT NULL,
+	status_porosie bit  not NULL ,
+	klient_id INT NOT NULL,
+	pergjegjes_id INT NOT NULL,
+	PRIMARY KEY (porosi_id)
+);
+
+CREATE TABLE PERDORUES (
+	perdorues_id INT NOT NULL identity(1,1),
+	emri VARCHAR(255) NOT NULL,
+	mbiemri VARCHAR(255) NOT NULL,
+	telefon VARCHAR(15) NULL,
+	passwordi Binary(64) NOT NULL,
+	aktiv bit NOT NULL default 1,
+	username varchar(100) NOT NULL UNIQUE,
+	krijimPerdorues DATETIME not NULL,
+	modifikimPerdoruesi DATETIME  NULL,
+	rol_id INT NOT NULL default 3,
+	PRIMARY KEY (perdorues_id)
+);
+
+CREATE TABLE ROLI (
+	rol_id INT NOT NULL identity(1,1),
+	emri VARCHAR(50) NOT NULL unique,
+	PRIMARY KEY (rol_id)
+);
+
+CREATE TABLE POROSI_ITEM (
+	porosi_id INT NOT NULL,
+	sasia INT NOT NULL,
+	gatim_id INT NOT NULL,
+	primary key(porosi_id, gatim_id)
+);
+
+CREATE TABLE GATIM (
+	gatim_id INT NOT NULL identity(1,1),
+	emri VARCHAR(100) NOT NULL,
+	pershkrimi TEXT NOT NULL,
+	cmimi money NOT NULL,
+	disponueshmeria bit NOT NULL,
+	foto varbinary(max) NULL,
+	datakrijimit DATETIME NOT NULL,
+	datamodifikimit DATETIME  NULL,
+	createdBy INT NOT NULL,
+	modifiedBy INT  NULL,
+	kategori_id INT NOT NULL,
+	PRIMARY KEY (gatim_id)
+);
+
+CREATE TABLE KATEGORI (
+	kategori_id INT NOT NULL identity(1,1),
+	emri VARCHAR(100) NOT NULL,
+	PRIMARY KEY (kategori_id)
+);
+create table LOGS(
+	ID INT IDENTITY(1,1) PRIMARY KEY,
+	CREATE_DATE DATETIME NOT NULL,
+	MODIFY_DATE DATETIME NULL,
+	CREATED_BY INT NOT NULL,
+	MODIFICATED_BY INT NULL,
+	CONSTRAINT FK_LOG FOREIGN KEY(CREATED_BY) REFERENCES PERDORUES(perdorues_id),
+	CONSTRAINT FK_LOG_MODIFIKO FOREIGN KEY(MODIFICATED_BY) REFERENCES PERDORUES(perdorues_id)
+	
+);
+
+ALTER TABLE POROSI ADD CONSTRAINT POROSI_fk0 FOREIGN KEY (adresa_id) REFERENCES ADRESA(adrese_id);
+
+ALTER TABLE POROSI ADD CONSTRAINT POROSI_fk1 FOREIGN KEY (klient_id) REFERENCES PERDORUES(perdorues_id);
+
+ALTER TABLE POROSI ADD CONSTRAINT POROSI_fk2 FOREIGN KEY (pergjegjes_id) REFERENCES PERDORUES(perdorues_id);
+
+ALTER TABLE PERDORUES ADD CONSTRAINT PERDORUES_fk3 FOREIGN KEY (rol_id) REFERENCES ROLI(rol_id);
+
+ALTER TABLE POROSI_ITEM ADD CONSTRAINT POROSI_ITEM_fk0 FOREIGN KEY (porosi_id) REFERENCES POROSI(porosi_id);
+
+ALTER TABLE POROSI_ITEM ADD CONSTRAINT POROSI_ITEM_fk1 FOREIGN KEY (gatim_id) REFERENCES GATIM(gatim_id);
+
+ALTER TABLE GATIM ADD CONSTRAINT GATIM_fk0 FOREIGN KEY (createdBy) REFERENCES PERDORUES(perdorues_id);
+
+ALTER TABLE GATIM ADD CONSTRAINT GATIM_fk1 FOREIGN KEY (modifiedBy) REFERENCES PERDORUES(perdorues_id);
+
+ALTER TABLE GATIM ADD CONSTRAINT GATIM_fk2 FOREIGN KEY (kategori_id) REFERENCES KATEGORI(kategori_id);

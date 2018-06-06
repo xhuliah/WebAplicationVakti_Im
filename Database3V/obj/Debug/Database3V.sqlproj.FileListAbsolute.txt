@@ -1,0 +1,9 @@
+C:\Users\ACSystem\Source\Repos\Database3V\bin\Debug\Database3V.dacpac
+C:\Users\ACSystem\Source\Repos\Database3V\bin\Debug\Database3V.dll
+C:\Users\ACSystem\Source\Repos\Database3V\bin\Debug\Database3V.pdb
+C:\Users\ACSystem\Source\Repos\Database3V\obj\Debug\Model.xml
+C:\Users\ACSystem\Source\Repos\Database3V\obj\Debug\refactor.xml
+C:\Users\ACSystem\Source\Repos\Database3V\obj\Debug\postdeploy.sql
+C:\Users\ACSystem\Source\Repos\Database3V\obj\Debug\predeploy.sql
+C:\Users\ACSystem\Source\Repos\Database3V\obj\Debug\Database3V.dll
+C:\Users\ACSystem\Source\Repos\Database3V\obj\Debug\Database3V.pdb

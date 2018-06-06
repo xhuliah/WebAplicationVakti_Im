@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WebApplicationVakti_Im.Models.PERDORUE>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Profili Administratorit</h2>
+
+<p>
+    <div class="row">
+        <div class=" col-md-4">
+            <ul class="breadcrumb">
+                <li>@Html.ActionLink("GatimetAktive","GatimetAktive","GATIMs")</li>
+                <li>@Html.ActionLink("Porosit", "Index")</li>
+                <li> @Html.ActionLink("Create New", "Create")</li>
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <div class="col-md-8">
+
+        </div>
+    </div>
+
+</p>
+<h4> Lista e Përdoruesve</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.emri)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mbiemri)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.emri)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mbiemri)
+        </td>
+
+        <td>
+            @Html.ActionLink("Modifiko", "Edit", new { id=item.perdorues_id }) |
+            @Html.ActionLink("Detajet", "Details", new { id=item.perdorues_id }) |
+            @Html.ActionLink("Fshi", "Delete", new { id=item.perdorues_id })
+        </td>
+    </tr>
+}
+
+</table>
