@@ -20,7 +20,7 @@ CREATE TABLE PERDORUES (
 	emri VARCHAR(255) NOT NULL,
 	mbiemri VARCHAR(255) NOT NULL,
 	telefon VARCHAR(15) NULL,
-	passwordi Binary(64) NOT NULL,
+	passwordi VARCHAR(MAX) NOT NULL,
 	aktiv bit NOT NULL default 1,
 	username varchar(100) NOT NULL UNIQUE,
 	krijimPerdorues DATETIME not NULL,
